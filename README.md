@@ -81,13 +81,25 @@ npm run start
 
 ## Deploy Backend on Render
 
-### Option A (recommended): Root Directory = `server`
+### Option A (recommended): API only — Root Directory = `server`
 
 | Setting | Value |
 |---------|-------|
 | **Root Directory** | `server` |
 | **Build Command** | `npm install && npm run build` |
 | **Start Command** | `npm start` |
+
+The API is available at `https://your-service.onrender.com/api/health`. Deploy the React app separately (static site) and set `VITE_API_URL` to your Render API URL.
+
+### Option A2: API + frontend on one Render service
+
+| Setting | Value |
+|---------|-------|
+| **Root Directory** | `server` |
+| **Build Command** | `npm install && npm run build:with-client` |
+| **Start Command** | `npm start` |
+
+Serves the game at your Render URL root once the client build is included.
 
 ### Option B: Root Directory = repo root (monorepo)
 

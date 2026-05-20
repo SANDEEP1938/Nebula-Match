@@ -1,5 +1,6 @@
 import cors from 'cors';
 import express, { type Express } from 'express';
+import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { env } from './config/env.js';
@@ -31,14 +32,26 @@ export const createApp = (): Express => {
 
   if (env.nodeEnv === 'production') {
     const clientDist = path.resolve(__dirname, '../../client/dist');
-    app.use(express.static(clientDist));
-    app.get('*', (req, res, next) => {
-      if (req.path.startsWith('/api')) {
-        next();
-        return;
-      }
-      res.sendFile(path.join(clientDist, 'index.html'));
-    });
+    const indexHtml = path.join(clientDist, 'index.html');
+
+    if (fs.existsSync(indexHtml)) {
+      app.use(express.static(clientDist));
+      app.get('*', (req, res, next) => {
+        if (req.path.startsWith('/api')) {
+          next();
+          return;
+        }
+        res.sendFile(indexHtml);
+      });
+    } else {
+      app.get('/', (_req, res) => {
+        res.json({
+          success: true,
+          message: 'Nebula Match API is running',
+          health: '/api/health',
+        });
+      });
+    }
   }
 
   app.use(notFound);
