@@ -81,13 +81,35 @@ npm run start
 
 ## Deploy Backend on Render
 
-In the Render dashboard, set:
+### Option A (recommended): Root Directory = `server`
 
 | Setting | Value |
 |---------|-------|
 | **Root Directory** | `server` |
 | **Build Command** | `npm install && npm run build` |
 | **Start Command** | `npm start` |
+
+### Option B: Root Directory = repo root (monorepo)
+
+| Setting | Value |
+|---------|-------|
+| **Root Directory** | *(leave empty)* |
+| **Build Command** | `npm run render:build` |
+| **Start Command** | `npm run start --prefix server` |
+
+### If you still see `Cannot find module 'cors'`
+
+That means dependencies were not installed in `server/` before `tsc` ran.
+
+1. Confirm **Root Directory** is exactly `server` (most common fix).
+2. Push latest code (types moved to `dependencies` in `server/package.json`).
+3. Use **Clear build cache & deploy** on Render.
+4. Fallback (skip TypeScript build on Render):
+
+| Setting | Value |
+|---------|-------|
+| **Build Command** | `npm install` |
+| **Start Command** | `npm run start:ts` |
 
 Required environment variables:
 
@@ -97,8 +119,6 @@ JWT_SECRET=long_random_secret
 CLIENT_URL=https://your-frontend-domain
 NODE_ENV=production
 ```
-
-If TypeScript cannot find `cors`, confirm **Root Directory** is `server` (not the monorepo root). The server `package.json` includes build-time type packages in `dependencies` so Render production installs include them.
 
 ## Documentation
 
