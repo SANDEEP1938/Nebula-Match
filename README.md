@@ -97,6 +97,16 @@ npm run start
 | **Build Command** | `npm run render:build` |
 | **Start Command** | `npm run start --prefix server` |
 
+### If the build fails on client TypeScript (`@types/react`, `vitest`, JSX errors)
+
+Render was probably using **`npm run build`** at the repo root, which also builds the frontend. The API service only needs the server.
+
+1. Switch to **Option A** or **Option B** above (use `render:build`, not `npm run build`).
+2. Push the latest code (client `build` uses `vite build` only; types are in `dependencies`).
+3. **Clear build cache & deploy** on Render.
+
+Do **not** use `npm install; npm run build` at the repo root for a Web Service API.
+
 ### If you still see `Cannot find module 'cors'`
 
 That means dependencies were not installed in `server/` before `tsc` ran.
