@@ -79,6 +79,27 @@ npm run build
 npm run start
 ```
 
+## Deploy Backend on Render
+
+In the Render dashboard, set:
+
+| Setting | Value |
+|---------|-------|
+| **Root Directory** | `server` |
+| **Build Command** | `npm install && npm run build` |
+| **Start Command** | `npm start` |
+
+Required environment variables:
+
+```env
+MONGODB_URI=mongodb+srv://...
+JWT_SECRET=long_random_secret
+CLIENT_URL=https://your-frontend-domain
+NODE_ENV=production
+```
+
+If TypeScript cannot find `cors`, confirm **Root Directory** is `server` (not the monorepo root). The server `package.json` includes build-time type packages in `dependencies` so Render production installs include them.
+
 ## Documentation
 
 - Setup, API, and test details: `INSTRUCTIONS.md`
