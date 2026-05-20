@@ -1,9 +1,7 @@
-import type { Types } from 'mongoose';
-
 export type Difficulty = 'easy' | 'medium' | 'hard';
 
 export interface SanitizedUser {
-  id: Types.ObjectId;
+  id: string;
   username: string;
   email: string;
   gamesPlayed: number;
