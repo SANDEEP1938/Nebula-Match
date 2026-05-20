@@ -1,0 +1,21 @@
+{
+  "name": "nebula-match",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "install:all": "npm install && npm install --prefix server && npm install --prefix client",
+    "mongo": "docker compose up -d",
+    "mongo:down": "docker compose down",
+    "dev": "concurrently \"npm run dev --prefix server\" \"npm run dev --prefix client\"",
+    "build": "npm run build --prefix server && npm run build --prefix client",
+    "build:server": "npm run build --prefix server",
+    "start": "npm run start --prefix server",
+    "test": "npm run test --prefix server && npm run test --prefix client",
+    "test:server": "npm run test --prefix server",
+    "test:client": "npm run test --prefix client"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
+

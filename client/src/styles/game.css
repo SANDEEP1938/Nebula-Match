@@ -1,0 +1,235 @@
+.play-layout {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.play-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem;
+}
+
+.difficulty-picker {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.difficulty-picker button {
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.difficulty-picker button.active {
+  border-color: var(--accent);
+  color: var(--text);
+  background: rgba(123, 92, 255, 0.2);
+}
+
+.game-board {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1.25rem;
+  justify-content: center;
+}
+
+.memory-card {
+  aspect-ratio: 1;
+  min-height: 72px;
+  perspective: 800px;
+  cursor: pointer;
+}
+
+.memory-card.disabled {
+  cursor: default;
+  pointer-events: none;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.45s ease;
+}
+
+.memory-card.flipped .card-inner,
+.memory-card.matched .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border);
+}
+
+.card-back {
+  background: linear-gradient(145deg, rgba(123, 92, 255, 0.35), rgba(34, 211, 238, 0.2));
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.2rem;
+  color: var(--accent-glow);
+}
+
+.card-front {
+  transform: rotateY(180deg);
+  background: rgba(8, 12, 30, 0.95);
+  font-size: 2rem;
+}
+
+.memory-card.matched .card-front {
+  border-color: var(--success);
+  box-shadow: 0 0 20px rgba(52, 211, 153, 0.25);
+}
+
+.win-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 8, 20, 0.8);
+  display: grid;
+  place-items: center;
+  z-index: 200;
+  padding: 1rem;
+}
+
+.win-panel {
+  max-width: 420px;
+  width: 100%;
+  padding: 2rem;
+  text-align: center;
+}
+
+.win-panel h2 {
+  font-family: 'Orbitron', sans-serif;
+  margin: 0 0 0.5rem;
+}
+
+.win-panel p {
+  color: var(--muted);
+  margin: 0 0 1.5rem;
+}
+
+.win-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.leaderboard-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.leaderboard-table th,
+.leaderboard-table td {
+  padding: 0.85rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+.leaderboard-table th {
+  color: var(--muted);
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+.leaderboard-table tr:hover td {
+  background: rgba(123, 92, 255, 0.06);
+}
+
+.rank-badge {
+  font-family: 'Orbitron', sans-serif;
+  color: var(--cyan);
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+  padding: 2rem 0;
+}
+
+.hero h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  line-height: 1.1;
+  margin: 0 0 1rem;
+}
+
+.hero p {
+  color: var(--muted);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0 0 1.5rem;
+}
+
+.hero-visual {
+  aspect-ratio: 1;
+  border-radius: 24px;
+  background:
+    linear-gradient(135deg, rgba(123, 92, 255, 0.3), rgba(34, 211, 238, 0.15)),
+    radial-gradient(circle at 30% 30%, rgba(244, 114, 182, 0.3), transparent 60%);
+  border: 1px solid var(--border);
+  display: grid;
+  place-items: center;
+  font-size: 5rem;
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.feature-card {
+  padding: 1.25rem;
+}
+
+.feature-card h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.05rem;
+}
+
+.feature-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.auth-page {
+  max-width: 420px;
+  margin: 2rem auto;
+  padding: 2rem;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+}
