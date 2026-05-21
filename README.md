@@ -7,6 +7,8 @@ Nebula Match is a full-stack memory card game built with the MERN stack and Type
 - Track your profile stats and match history
 - Reset or change your password when needed
 
+check the output at: -> https://nebula-match.onrender.com/
+
 ## Quick Start
 
 ### 1) Install dependencies
