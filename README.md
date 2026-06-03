@@ -1,6 +1,6 @@
 # Nebula Match
 
-Nebula Match is a full-stack memory card game built with the MERN stack and TypeScript.
+Nebula Match is a full-stack memory card game built with the MERN stack and TypeScript .
 
 - Match cosmic symbol pairs
 - Compete on a global leaderboard
