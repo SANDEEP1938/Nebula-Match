@@ -10,6 +10,7 @@ import ResetPassword from './pages/ResetPassword';
 import Layout from './components/Layout.jsx';
 
 const App = () => (
+  console.log("ads");
   <Routes>
     <Route element={<Layout />}>
       <Route index element={<Home />} />
